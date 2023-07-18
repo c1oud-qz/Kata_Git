@@ -7,13 +7,12 @@ public class Main {
     public static void main (String [] args) throws IOException{
         Scanner sc = new Scanner(System.in, "cp866");
         String text = "";
-        text += sc.next();
+        text += sc.nextLine().replaceAll("\\s", "");
         sc.close();
         if (text.length()<3){
             throw new IOException("Неправильный ввод.");
         }
         String rim [] = new String[]{"I", "V", "X", "L", "C"};
-        boolean rimMode[] = new boolean[(text.length())];
         boolean needRim = false;
         for (int i=0; i<text.length(); i++){
             boolean isRim = false;
@@ -23,8 +22,6 @@ public class Main {
                     needRim = isRim;
                 }
             }
-            rimMode[i] = isRim;
-            // System.out.printf("%b, ", isRim);
         }
         for (int i=0; i<text.length(); i++){
             if ((needRim==true)&&((Character.isDigit(text.charAt(i)))==true)){
